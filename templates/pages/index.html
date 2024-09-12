@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}HOME{% endblock  %}
+
+{% block content %}
+    <div class="container">
+        {% for p in posts %}
+        <center>
+            <div class="card border-dark position-relative rounded w-50 my-3 mx-5">
+                <div class="card-title">{{ p.title }}</div>
+                <div class="card-body">
+                    <p>{{ p.content }}</p>
+                </div>
+                <div class="position-absolute bottom-0 start-0 bg-secondary text-white">
+                    {{ p.created_date }}
+                </div>
+            </div>
+        </center>
+        {% endfor %}
+    </div>
+{% endblock  %}
