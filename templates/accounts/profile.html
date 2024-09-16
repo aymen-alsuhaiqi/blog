@@ -1,10 +1,12 @@
 {% extends "base.html" %}
-{% block title %}HOME{% endblock %}
+
+{% block title %}Profile{% endblock  %}
+
 {% block content %}
 <center>
-    <div class="container ">
-        {% for p in posts %}
-        <div class="border-2 relative rounded-xl my-3 bg-white shadow-md shadow-blue-200">
+    <div class="container">
+        {% for p in post %}
+        <div class="border-2 relative rounded-xl my-3 shadow-md shadow-blue-200">
             <div class="text-xl font-bold">
                 {{ p.title }}
             </div>

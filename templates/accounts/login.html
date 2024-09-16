@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock  %}
+{% block content %}
+<center>
+    <div class="container my-32 border-2 rounded-3xl w-max p-5 hover:border-red-950">
+        {% if not request.user.is_authenticated %}
+        <label class="text-2xl font-bold">تسجيل الدخول</label>
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input class="flex m-2 focus:ring-blue-700 border rounded-xl " type="text" name="username" id="" placeholder="username"/>
+                <input class="flex m-2 focus:ring-blue-700 border rounded-xl " type="password" name="password" id="" placeholder="password"/>
+                {% include "_partials/alerts.html" %}
+                <button type="submit" class="border px-3 py-1 bg-blue-500 rounded-lg text-white hover:bg-blue-800">تسجيل</button>
+            </form>
+        </div>
+        {% else %}
+        {% include "_partials/alerts.html" %}
+        {% endif %}
+
+    </div>
+</center>
+<div class="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Sign Up</h2>
+      
+      <form action="#" method="POST" class="space-y-4">
+        
+        <!-- Full Name -->
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+          <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        </div>
+        
+        <!-- Email -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" id="email" name="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        </div>
+  
+        <!-- Password -->
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <input type="password" id="password" name="password" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        </div>
+  
+        <!-- Confirm Password -->
+        <div>
+          <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+          <input type="password" id="confirm_password" name="confirm_password" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        </div>
+  
+        <!-- Submit Button -->
+        <div class="flex justify-between items-center">
+          <button type="submit" class="w-full bg-indigo-600 text-white p-3 rounded-md shadow-md hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50">Create Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+{% endblock %}

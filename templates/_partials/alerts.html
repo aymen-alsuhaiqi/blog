@@ -1,0 +1,28 @@
+{% if messages %}
+{% for msg in messages %}
+<div id="alert" dir='rtl' class="
+{% if msg.tags == 'error' %}bg-red-500
+{% elif msg.tags == 'success' %} bg-green-600 
+{% elif msg.tags == 'warning' %} bg-orange-300
+{% elif msg.tags == 'info' %} bg-sky-600
+{% endif %}
+rounded-md p-2 text-white flex justify-between items-center">
+    <div>
+        {{ msg }}
+    </div>
+    <button type="button" class="close ml-4 text-white" onclick="closeAlert()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+{% endif %}
+
+
+<script>
+    function closeAlert() {
+        const alertBox = document.getElementById('alert');
+        if (alertBox) {
+            alertBox.style.display = 'none';
+        }
+    }
+</script>

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}ADD POST{% endblock  %}
+
+{% block content %}
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_table }}  <!-- or {{ form.as_table }} to display the form in a table format -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}

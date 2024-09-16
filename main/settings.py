@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'post',
+    'account',
     'bootstrap5',
     'tailwind',
     'theme',
@@ -64,7 +65,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'main.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -144,3 +144,7 @@ MEDIA_URL = 'media/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+########################################################################
+LOGIN_URL = '/login' 

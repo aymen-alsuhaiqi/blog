@@ -1,9 +1,17 @@
+{% load static %}
 <nav class="p-5 mb-4 bg-blue-500">
   <div class="container">
-    <a class="text-white bg-blue-800 p-2 rounded-md" href="#">Home</a>
-    <a class="text-white ms-auto hover:bg-blue-800 p-2 rounded-md" href="#">posts</a>
-    <a class="text-white ms-auto hover:bg-blue-800 p-2 rounded-md" href="#">Contact</a>
-    <a class="text-white ms-auto hover:bg-blue-800 p-2 rounded-md" href="#">Login</a>
-    <button class="btn btn-sm btn-outline-light ms-auto">Sign Up</button>
+    <a href='{% url "profile" %}'>
+      <img class='mx-4' src='{% static "img/profile.svg" %}' style="display:inline;" />
+    </a>
+    <a class="text-white {% if '/' == request.path %}bg-blue-800{% else %} {% endif %} hover:bg-blue-800 p-2 rounded-md" href="{% url 'index' %}">الرئيسية</a>
+    <a class="text-white ms-auto {% if '/add-posts' == request.path %}bg-blue-800{% else %} {% endif %} hover:bg-blue-800 p-2 rounded-md" href="{% url 'add-posts' %}">اضافة منشور</a>
+    <a class="text-white ms-auto hover:bg-blue-800 p-2 rounded-md" href="#">تواصل بنا</a>
+    {% if not request.user.is_authenticated %}
+    <a class="float-end text-white ms-auto hover:bg-blue-800 p-2 rounded-md" href="{% url "login" %}">تسجيل الدخول</a>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+    <a href="{% url "logout" %}" class="float-end text-white ms-auto hover:bg-blue-800 p-2 rounded-md">تسجيل الخروج</a>
+    {% endif %}
   </div>
 </nav>
