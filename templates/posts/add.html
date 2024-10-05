@@ -4,10 +4,12 @@
 
 {% block content %}
     <div class="container">
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" class="m-5 w-1/2 bg-white p-5 rounded-md ring-1 mx-auto" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_table }}  <!-- or {{ form.as_table }} to display the form in a table format -->
-            <button type="submit">Submit</button>
+            <center>
+                <button type="submit" class="rounded-md bg-sky-600 text-white my-2 py-1 px-4">Submit</button>
+            </center>
         </form>
     </div>
 {% endblock %}
