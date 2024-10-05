@@ -1,5 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}HOME{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">  
+{% endblock %}
 {% block content %}
 <center>
     <div class="container ">
@@ -14,10 +18,41 @@
             </div>
             {% endif %}
             <div class="text-lg">
-                <p>{{ p.content }}</p><br />
+                <p>{{ p.content|slice:':100' }}</p><br/>
+                <a href="">قراءة المزيد</a>
             </div>
             <div class="absolute bottom-0 left-1">
                 {{ p.created_date }}
+            </div>
+            <!-- Comment Icon -->
+        <div class="absolute bottom-0 right-1">
+            <img src="{% static 'img/Comment.png' %}" class="w-5 h-5 cursor-pointer" alt="Add Comment"
+                onclick="document.getElementById('commentDialog{{ forloop.counter }}').showModal()">
+        </div>
+
+        <dialog id="commentDialog{{ forloop.counter }}" class="p-6 bg-white rounded-lg shadow-lg max-w-md w-full commentDialog">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4 ">Add Comment</h2>
+
+            <form method="POST" action="{% url 'add-comments' p.id %}">
+                {% csrf_token %}
+                <textarea name="comment" rows="4"
+                    class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Type your comment here..."></textarea>
+
+                <div class="mt-4 flex justify-end space-x-2">
+                    <button type="button" onclick="document.getElementById('commentDialog{{ forloop.counter }}').close()"
+                        class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </dialog>
+
+            <div class="absolute bottom-5 bg-center right-1">
+                <img src="{% static 'img/like.png' %}" class="w-5 h-5" alt="">
             </div>
         </div>
         {% endfor %}

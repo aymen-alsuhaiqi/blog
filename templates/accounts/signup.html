@@ -1,13 +1,23 @@
 {% extends "base.html" %}
-{% block title %}تسجيل الدخول{% endblock  %}
+{% block title %}انشاء حساب{% endblock  %}
 {% block content %}
         {% if not request.user.is_authenticated %}
         <div class="min-h-screen bg-gray-100 flex items-center justify-center">
           <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">تسجيل الدخول</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">انشاء حساب</h2>
             
             <form  method="POST" class="space-y-4">
               {% csrf_token %}
+              <div class="flex">
+                <div class="mx-1">
+                    <label for="first_name" class="block text-sm font-medium text-gray-700">الاسم الاول</label>
+                    <input type="text" id="first_name" name="first_name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <div class="mx-1">
+                    <label for="last_name" class="block text-sm pr-1 font-medium text-gray-700">اللقب</label>
+                    <input type="text" id="last_name" name="last_name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+              </div>
               <div>
                 <label for="username" class="block text-sm font-medium text-gray-700">اسم المستخدم</label>
                 <input type="text" id="username" name="username" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -16,13 +26,17 @@
                 <label for="password" class="block text-sm font-medium text-gray-700">كلمة المرور</label>
                 <input type="password" id="password" name="password" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               </div>
+              <div>
+                <label for="password_confirm" class="block text-sm font-medium text-gray-700">تأكيد كلمة المرور</label>
+                <input type="password" id="password_confirm" name="password_confirm" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              </div>
               {% include "_partials/alerts.html" %}
         
              
               <div>
-                <button type="submit" class="w-full bg-indigo-600 text-white p-3 my-1 rounded-md shadow-md hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50">تسجيل الدخول</button>
-                <a href="{% url 'register' %}">
-                  <button type="button" class="w-full bg-green-600 text-white p-3 my-1 rounded-md shadow-md hover:bg-green-700 focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50">حساب جديد</button>
+                <button type="submit" class="w-full bg-indigo-600 text-white p-3 my-1 rounded-md shadow-md hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50">انشاء حساب</button>
+                <a href="{% url 'login' %}">
+                  <button type="button" class="w-full bg-green-600 text-white p-3 my-1 rounded-md shadow-md hover:bg-green-700 focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50">لديك حساب بالفعل</button>
                 </a>
               </div>
             </form>

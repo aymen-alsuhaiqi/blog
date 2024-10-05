@@ -1,28 +1,19 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Profile{% endblock  %}
 
 {% block content %}
-<center>
-    <div class="container">
-        {% for p in post %}
-        <div class="border-2 relative rounded-xl my-3 shadow-md shadow-blue-200">
-            <div class="text-xl font-bold">
-                {{ p.title }}
-            </div>
-            {% if p.media %}
-            <div class="w-44">
-                <img class="w-full h-full object-cover" src="{{ p.media.url }}">
-            </div>
-            {% endif %}
-            <div class="text-lg">
-                <p>{{ p.content }}</p><br />
-            </div>
-            <div class="absolute bottom-0 left-1">
-                {{ p.created_date }}
-            </div>
+<div class="container">
+    <div class="max-h-72">
+        <img class="w-full h-60" src="{% static 'img/wall.jpg' %}" alt="صورة الغلاف">
+        <div class="bg-white -translate-y-20  mx-auto w-40 h-40 border-4 border-white rounded-full overflow-hidden">
+            <img src="{% static 'img/profile_img.jpg' %}" alt="" class="object-cover object-center h-40">
         </div>
-        {% endfor %}
     </div>
-</center>
+    <div>
+        <h2 class="text-2xl">{{ request.user.first_name }} {{ request.user.last_name}}</h2>
+    </div>
+
+
+</div>
 {% endblock %}

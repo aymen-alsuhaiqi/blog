@@ -25,3 +25,16 @@ def add_post(request):
             print(form.errors)
         form = AddPostForm()
     return render(request,'posts/add.html',{'form':form})
+
+@login_required
+def add_comments(request,p_id):
+    post = Post.objects.get(id=p_id)
+    user = request.user
+    if request.method == 'POST':
+        comment = request.POST['comment']        
+        new_comment = Comment.objects.create(post=post,user=user,comment=comment)
+        new_comment.save()
+        return redirect('index')
+    else:
+        print('d')
+    return redirect('index')

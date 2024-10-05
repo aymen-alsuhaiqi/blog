@@ -4,6 +4,6 @@ migrations/
 db.sqlite3
 
 __pycache__/
-
+card_friends.html
 node_modules/
 media/
