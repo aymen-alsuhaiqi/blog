@@ -3,17 +3,21 @@
 {% block title %}Profile{% endblock  %}
 
 {% block content %}
-<div class="container">
     <div class="max-h-72">
-        <img class="w-full h-60" src="{% static 'img/wall.jpg' %}" alt="صورة الغلاف">
+        <img class="w-full h-72" src="{{ user_profile.cover_image.url }}" alt="صورة الغلاف">
         <div class="bg-white -translate-y-20  mx-auto w-40 h-40 border-4 border-white rounded-full overflow-hidden">
-            <img src="{% static 'img/profile_img.jpg' %}" alt="" class="object-cover object-center h-40">
+            {% if user_profile.profile_picture.url %}
+            <img src="{{ user_profile.profile_picture.url }}" alt="الصورة الشخصية" class="object-cover object-center h-40">
+            {% else %}
+            <label for="id_profile_picture" class="cursor-pointer">
+                <img src="{% static 'img/camera-add-photo.svg' %}" alt="الصورة الشخصية" class="object-cover object-center h-36 p-5">
+            </label>
+            <input type="file" name="profile_picture" id="id_profile_picture" accept="image/*" class="hidden" onchange="this.form.submit()">
+        {% endif %}
         </div>
     </div>
     <div>
-        <h2 class="text-2xl">{{ request.user.first_name }} {{ request.user.last_name}}</h2>
+        <h2 class="text-2xl font-bold mx-auto">{{ request.user.first_name }} {{ request.user.last_name}}</h2>
     </div>
 
-
-</div>
 {% endblock %}

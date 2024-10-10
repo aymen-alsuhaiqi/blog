@@ -4,4 +4,5 @@ urlpatterns=[
     path('',views.index,name='index'),
     path('add-posts',views.add_post,name='add-posts'),
     path('add-comments/<int:p_id>',views.add_comments,name='add-comments'),
+    path('posts/<int:p_id>',views.post_details,name='details'),
 ]

@@ -34,7 +34,12 @@ def add_comments(request,p_id):
         comment = request.POST['comment']        
         new_comment = Comment.objects.create(post=post,user=user,comment=comment)
         new_comment.save()
-        return redirect('index')
+        return redirect('/posts/'+str(p_id))
     else:
-        print('d')
+        pass
     return redirect('index')
+
+def post_details(request,p_id):
+    post = Post.objects.get(id=p_id)
+    comments = Comment.objects.filter(post=post)
+    return render(request,'posts/details.html',{'post':post,'comments':comments})

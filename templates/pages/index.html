@@ -6,7 +6,6 @@
 {% endblock %}
 {% block content %}
 <center>
-    <div class="container ">
         {% for p in posts %}
         <div class="border-2 relative rounded-xl my-3 bg-white mx-28 shadow-md shadow-blue-200">
             <div class="text-xl font-bold">
@@ -19,7 +18,7 @@
             {% endif %}
             <div class="text-lg">
                 <p>{{ p.content|slice:':100' }}</p><br/>
-                <a href="">قراءة المزيد</a>
+                <a href="{% url 'details' p.id %}">قراءة المزيد</a>
             </div>
             <div class="absolute bottom-0 left-1">
                 {{ p.created_date }}
@@ -56,6 +55,5 @@
             </div>
         </div>
         {% endfor %}
-    </div>
 </center>
 {% endblock %}

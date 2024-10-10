@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from post.models import Post
+from .models import *
 from django.contrib.auth.models import User
 # Create your views here.
 
@@ -26,14 +27,15 @@ def logout_user(request):
     return redirect('login')
 
 def profile(request):
-    post = None
+    user_profile = None
     if request.user.is_authenticated:
         post = Post.objects.all().filter(author=request.user)
-        print("__⚠️⚠️⚠️__ ~ file: views.py:27 ~ post:", post)
+        if UserProfile.objects.filter(user=request.user).exists():
+            user_profile = UserProfile.objects.get(user=request.user)
     else:
         messages.warning(request,'يجب تسجيل الدخول أولا')
         return redirect('login')
-    return render(request, 'accounts/profile.html',{'post':post})
+    return render(request, 'accounts/profile.html',{'user_profile':user_profile})
 
 def register(request):
     if request.method == 'POST':

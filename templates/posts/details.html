@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <!-- Post Content -->
+    <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <div class="flex items-center mb-4">
+            <img src="{{ post.author.userprofile.profile_picture.url }}" alt="{{ post.author.username }}" class="h-20 rounded-full mr-4 p-3">
+            <div>
+                <h3 class="text-xl font-semibold">{{ post.author.get_full_name }}</h3>
+                <p class="text-gray-600 text-sm">{{ post.created_date|date:"F j, Y, g:i a" }}</p>
+            </div>
+        </div>
+        <h1 class="text-3xl font-bold mb-4">{{ post.title }}</h1>
+        {% if post.media %}
+            <div class="w-full">
+                <img class="w-full h-full object-cover" src="{{ post.media.url }}">
+            </div>
+        {% endif %}
+        <p class="text-gray-800 mt-3">{{ post.content }}</p>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-2xl font-semibold mb-4">التعليقات ({{ comments.count }})</h2>
+
+        <!-- Comment Form -->
+        <div class="mb-6">
+            {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'add-comments' post.id %}">
+                {% csrf_token %}
+                <textarea name="comment" rows="2"
+                    class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    id='comment'
+                    placeholder="اكتب تعليقك هنا...." required></textarea>
+
+                <div class="mt-4 flex justify-end space-x-2">
+                    <button type="button" onclick="document.getElementById('comment').value = ''"
+                        class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                        Submit
+                    </button>
+                </div>
+            </form>
+            {% else %}
+                <p class="text-gray-600">يجب عليك <a href="{% url 'login' %}" class="text-blue-500 hover:underline">تسجيل الدخول</a> لإضافة تعليقات.</p>
+            {% endif %}
+        </div>
+
+        <!-- Display Comments -->
+        <div>
+            {% for comment in comments %}
+                <div class="border-b border-gray-200 pb-4 mb-4">
+                    <div class="flex items-center mb-2">
+                        <img src="{{ comment.user.userprofile.profile_picture.url }}" alt="{% static 'img/profile.svg' %}" class="w-12 p-1 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-semibold">{{ comment.user.get_full_name }}</h4>
+                            <p class="text-gray-500 text-sm">{{ comment.created_date|date:"F j, Y, g:i a" }}</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">{{ comment.comment }}</p>
+                </div>
+            {% empty %}
+                <p class="text-gray-600">لا يوجد تعليقات حتى الان!</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
