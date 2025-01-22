@@ -851,6 +851,10 @@ select {
   margin: 1.25rem;
 }
 
+.m-3 {
+  margin: 0.75rem;
+}
+
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -922,10 +926,6 @@ select {
   margin-top: 0.25rem;
 }
 
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
 .mt-3 {
   margin-top: 0.75rem;
 }
@@ -934,12 +934,36 @@ select {
   margin-top: 1rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mt-32 {
+  margin-top: 8rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.mt-16 {
+  margin-top: 4rem;
+}
+
 .block {
   display: block;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
 }
 
 .table {
@@ -1022,12 +1046,45 @@ select {
   width: 100%;
 }
 
+.w-56 {
+  width: 14rem;
+}
+
+.w-32 {
+  width: 8rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.min-w-56 {
+  min-width: 14rem;
+}
+
 .max-w-md {
   max-width: 28rem;
 }
 
+.max-w-56 {
+  max-width: 14rem;
+}
+
 .border-collapse {
   border-collapse: collapse;
+}
+
+.origin-center {
+  transform-origin: center;
 }
 
 .-translate-y-20 {
@@ -1041,6 +1098,10 @@ select {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.content-center {
+  align-content: center;
 }
 
 .content-start {
@@ -1079,10 +1140,6 @@ select {
   overflow: hidden;
 }
 
-.rounded {
-  border-radius: 0.25rem;
-}
-
 .rounded-full {
   border-radius: 9999px;
 }
@@ -1097,6 +1154,10 @@ select {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded {
+  border-radius: 0.25rem;
 }
 
 .border {
@@ -1128,6 +1189,11 @@ select {
 .border-white {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.border-b-blue-500 {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(59 130 246 / var(--tw-border-opacity));
 }
 
 .bg-blue-500 {
@@ -1183,6 +1249,11 @@ select {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
 .bg-center {
@@ -1249,6 +1320,10 @@ select {
 
 .pr-1 {
   padding-right: 0.25rem;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .font-serif {

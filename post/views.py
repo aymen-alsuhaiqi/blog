@@ -4,6 +4,9 @@ from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.contrib import messages
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 

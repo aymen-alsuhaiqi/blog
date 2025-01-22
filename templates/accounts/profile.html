@@ -3,9 +3,12 @@
 {% block title %}Profile{% endblock  %}
 
 {% block content %}
-    <div class="max-h-72">
-        <img class="w-full h-72" src="{{ user_profile.cover_image.url }}" alt="صورة الغلاف">
-        <div class="bg-white -translate-y-20  mx-auto w-40 h-40 border-4 border-white rounded-full overflow-hidden">
+    <div class="max-h-72 ">
+        <div class="shadow-lg">
+            <img class="w-full h-72 " src="{{ user_profile.cover_image.url }}" alt="صورة الغلاف">
+        </div>
+        
+        <div class="bg-white -translate-y-20  mx-auto w-40 h-40 border-4 border-white rounded-full overflow-hidden border-b-blue-500">
             {% if user_profile.profile_picture.url %}
             <img src="{{ user_profile.profile_picture.url }}" alt="الصورة الشخصية" class="object-cover object-center h-40">
             {% else %}
@@ -13,11 +16,26 @@
                 <img src="{% static 'img/camera-add-photo.svg' %}" alt="الصورة الشخصية" class="object-cover object-center h-36 p-5">
             </label>
             <input type="file" name="profile_picture" id="id_profile_picture" accept="image/*" class="hidden" onchange="this.form.submit()">
-        {% endif %}
+            {% endif %}
         </div>
+        
+    </div>
+    <div class="mt-3">
+        
     </div>
     <div>
         <h2 class="text-2xl font-bold mx-auto">{{ request.user.first_name }} {{ request.user.last_name}}</h2>
+    </div>
+
+    <div class="mt-16 inline-flex w-full justify-center">
+            <div class="bg-white rounded-md p-3 m-3 w-fit text-center">
+                <label for="friendIcon" class="text-lg font-bold">الأصدقاء</label>
+                <img id="friendIcon" src="{% static 'img/friends.png' %}" width="100px" alt="">
+            </div>
+            <div class="bg-white rounded-md p-3 m-3 w-fit text-center">
+                <label for="friendIcon" class="text-lg font-bold">المحفوظات</label>
+                <img id="friendIcon" src="{% static 'img/savedPost.png' %}" width="100px" alt="">
+            </div>
     </div>
 
 {% endblock %}

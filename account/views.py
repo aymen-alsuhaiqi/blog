@@ -13,7 +13,7 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            messages.success(request,'تم تسجيل الدخول بنجاح')
+            # messages.success(request,'تم تسجيل الدخول بنجاح')
             return redirect('profile')
         else:
             messages.error(request,'خطأ باسم المستخدم او كلمة المرور')
@@ -23,7 +23,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    messages.success(request,'تم تسجيل الخروج')
+    # messages.success(request,'تم تسجيل الخروج')
     return redirect('login')
 
 def profile(request):
